@@ -1,22 +1,22 @@
-//importing the ORM to create the functions that will interact with the database
-var orm = require("../config/orm.js");
-
-var burger = {
-    selectAll: function (cb) {
-        orm.selectAll(function (res) {
+// Global
+const orm = require("../config/orm.js");
+// Burger
+const burger = {
+    select: function(cb){
+        orm.selectAll("burgers",function(res){
             cb(res);
         });
     },
-    insertOne: function (burger, cb) {
-        orm.insertOne(burger, function (res) {
+    create: function(cols,vals,cb){
+        orm.insertOne("burgers",cols,vals,function(res){
             cb(res);
         });
     },
-    updateOne: function (id, cb) {
-        orm.updateOne([id], function (res) {
+    update: function(objColVals,condition,cb){
+        orm.updateOne("burgers",objColVals,condition,function(res){
             cb(res);
         });
     }
 };
-
+// Export Burger
 module.exports = burger;
